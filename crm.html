@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DS WORLD CRM – Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(180deg,#eaf6ff,#ffffff);
+  padding:14px;
+}
+
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 0;
+}
+
+h2{ color:#0a5b99; margin:0; font-weight:700; }
+
+#logoutBtn{
+  padding:8px 16px;
+  background:#ff5757;
+  color:white;
+  border:none;
+  border-radius:12px;
+  font-weight:700;
+}
+
+.box{
+  padding:16px;
+  background:white;
+  border-radius:16px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.15);
+  margin-bottom:20px;
+}
+
+input, textarea, select{
+  width:100%;
+  padding:12px;
+  border-radius:12px;
+  border:1px solid #cbd6e2;
+  margin-top:10px;
+  font-size:15px;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  margin-top:14px;
+  border:none;
+  border-radius:12px;
+  font-weight:700;
+  font-size:16px;
+}
+
+#waBtn{ background:#25D366; color:white; }
+#saveBtn{ background:#0a5b99; color:white; }
+
+footer{
+  text-align:center;
+  margin-top:20px;
+  font-weight:700;
+  color:#0a5b99;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+  <h2>RCM बचत कॅल्क्युलेटर — CRM</h2>
+  <button id="logoutBtn">Logout</button>
+</header>
+
+<div class="box" id="visitorBox">Visitors: —</div>
+
+<div class="box">
+  <h3 style="margin:0;color:#0a5b99;font-weight:700;">नवीन ग्राहक</h3>
+
+  <input id="cname" placeholder="ग्राहकाचे नाव">
+  <input id="cmob" placeholder="मोबाईल नंबर">
+  <textarea id="caddr" placeholder="पत्ता"></textarea>
+  
+  <select id="follow">
+    <option value="">Next Follow-up</option>
+    <option>Today</option>
+    <option>Tomorrow</option>
+    <option>After 2 Days</option>
+    <option>After 1 Week</option>
+  </select>
+
+  <textarea id="notes" placeholder="Notes / Interest"></textarea>
+
+  <button id="saveBtn">Save Customer</button>
+  <button id="waBtn">Send to WhatsApp</button>
+</div>
+
+<footer>Designed by DS WORLD 🌍 | 7020970727</footer>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyCny9svhGUs3Ja5OrTHfH5Kqj05GW2S0RE",
+  authDomain: "dsworldcrm.firebaseapp.com",
+  projectId: "dsworldcrm",
+  storageBucket: "dsworldcrm.firebasestorage.app",
+  messagingSenderId: "449729131508",
+  appId: "1:449729131508:web:61cdd1de17b151717c3fa1"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+/* ------------------------------------
+   FORCE LOGIN CHECK
+-------------------------------------- */
+auth.onAuthStateChanged(user=>{
+  if(!user){
+    alert("Please login. Redirecting...");
+    window.location.href="index.html";
+  }
+});
+
+/* Logout */
+logoutBtn.onclick = ()=>{
+  auth.signOut().then(()=>window.location.href="index.html");
+};
+
+/* Visitor Count */
+let vc = localStorage.getItem("DS_VISITS") || 0;
+vc++;
+localStorage.setItem("DS_VISITS", vc);
+visitorBox.innerHTML = `Visitors: <b>${vc}</b>`;
+
+/* Save Customer (local only) */
+saveBtn.onclick = ()=>{
+  alert("Customer Saved!");
+};
+
+/* WhatsApp Send */
+waBtn.onclick = ()=>{
+  let msg = 
+`*🧾 DS WORLD CRM – Customer Details*
+----------------------------------
+👤 नाव: ${cname.value}
+📞 मोबाईल: ${cmob.value}
+📍 पत्ता: ${caddr.value}
+📅 Follow-up: ${follow.value}
+📝 Notes: ${notes.value}
+----------------------------------
+धन्यवाद!
+`;
+
+  window.open("https://wa.me/7020970727?text=" + encodeURIComponent(msg));
+};
+</script>
+
+</body>
+</html>
