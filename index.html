@@ -1,296 +1,116 @@
-<!doctype html>
-<html lang="mr">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>DS WORLD — CRM Dashboard (RCM Theme)</title>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DS WORLD CRM</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Baloo+2:wght@600;700&display=swap" rel="stylesheet">
+
 <style>
-  :root{
-    --bg: linear-gradient(180deg,#eaf5ff,#f9faff);
-    --card-bg: rgba(255,255,255,0.72);
-    --muted: #6b7280;
-    --text: #0f1724;
-    --primary: #0a5b99;
-    --accent: #0ea44a;
-    --glass-border: rgba(255,255,255,0.6);
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0;font-family:"Poppins",sans-serif;background:var(--bg);color:var(--text);
-    -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:1100px;margin:16px auto;padding:16px}
-  header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-  .brand{display:flex;align-items:center;gap:12px}
-  .logo{width:64px;height:64px;border-radius:14px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 28px rgba(10,30,80,0.08);overflow:hidden}
-  .logo img{width:100%;height:100%;object-fit:cover}
-  h1{margin:0;font-family:"Baloo 2";color:var(--primary);font-size:20px}
-  .now{font-size:13px;color:var(--muted)}
-  #themeToggle{padding:8px 12px;border-radius:999px;border:none;background:linear-gradient(90deg,var(--primary),#007dc9);color:#fff;font-weight:700;cursor:pointer}
-  .grid{display:grid;grid-template-columns:1fr 360px;gap:16px;margin-top:16px}
-  @media(max-width:980px){.grid{grid-template-columns:1fr}}
-  .card{background:var(--card-bg);border-radius:14px;padding:14px;border:1px solid var(--glass-border);box-shadow:0 10px 30px rgba(10,30,80,0.04)}
-  /* analytics cards */
-  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-  .big-card{border-radius:14px;padding:18px;color:#fff;min-height:110px;position:relative;overflow:hidden}
-  .big-card .label{font-weight:700;opacity:0.95}
-  .big-card .val{font-weight:900;font-size:28px;margin-top:10px}
-  .card.c1{background:linear-gradient(135deg,#4ac7ff,#2196f3)}
-  .card.c2{background:linear-gradient(135deg,#a259ff,#7b42f6)}
-  .card.c3{background:linear-gradient(135deg,#4ade80,#0ea44a)}
-  .card.c4{background:linear-gradient(135deg,#ffb65e,#ff8a00);color:#111}
-  .stats-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-  .stat-small{flex:1;padding:10px;border-radius:10px;background:rgba(255,255,255,0.15);text-align:center}
-  /* left column */
-  .left .form-row{display:flex;gap:10px;flex-wrap:wrap}
-  input,select,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,0.06);font-size:14px}
-  label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}
-  .btn{padding:10px 12px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
-  .btn.primary{background:linear-gradient(90deg,var(--primary),#0072c9);color:#fff}
-  .btn.ghost{background:#fff;border:1px solid #eee}
-  .product-list{margin-top:12px;max-height:320px;overflow:auto}
-  .cust-item{padding:10px;border-radius:10px;margin-bottom:8px;background:rgba(255,255,255,0.6);display:flex;justify-content:space-between;align-items:center}
-  .cust-item .meta{font-size:13px;color:var(--muted)}
-  .search-row{display:flex;gap:8px;margin-bottom:10px}
-  .small{font-size:13px;color:var(--muted)}
-  .visitor-badge{padding:8px 12px;border-radius:999px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,0.06);font-weight:700}
-  /* modal */
-  .overlay{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;z-index:9999}
-  .modal{width:94%;max-width:720px;background:#fff;border-radius:12px;padding:16px;box-shadow:0 14px 40px rgba(0,0,0,0.25);max-height:88vh;overflow:auto}
-  .modal h3{margin-top:0}
-  .follow-list{margin-top:10px}
-  .follow-item{padding:8px;border-radius:8px;background:#f5f7fb;margin-bottom:8px}
-  .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-  .export-row{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
-  /* responsive tweaks */
-  @media(max-width:640px){
-    .big-card .val{font-size:22px}
-    .grid{gap:10px}
-  }
+body{
+  margin:0;
+  font-family:"Poppins",sans-serif;
+  background:linear-gradient(180deg,#eaf5ff,#f9faff);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+}
+
+.container{
+  width:92%;
+  max-width:420px;
+  padding:24px;
+  background:rgba(255,255,255,0.65);
+  border-radius:18px;
+  backdrop-filter:blur(16px);
+  box-shadow:0 8px 26px rgba(0,0,0,0.15);
+}
+
+h1{
+  text-align:center;
+  font-family:'Baloo 2';
+  color:#0a5b99;
+  margin-top:0;
+}
+
+input{
+  width:100%;
+  padding:12px;
+  margin-top:12px;
+  border-radius:12px;
+  border:1px solid #d0d7e2;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  margin-top:16px;
+  border-radius:12px;
+  background:#0a5b99;
+  color:white;
+  border:none;
+  font-weight:700;
+  font-size:15px;
+}
+
+.switch{
+  text-align:center;
+  margin-top:12px;
+  font-size:14px;
+}
+
+.switch span{
+  color:#007bff;
+  font-weight:700;
+  cursor:pointer;
+}
+
+#dashboard{
+  display:none;
+  text-align:center;
+}
 </style>
 </head>
 <body>
-  <div class="wrap">
 
-    <header>
-      <div class="brand">
-        <div class="logo">
-          <img src="logo.png" onerror="this.src='https://via.placeholder.com/64?text=DS'">
-        </div>
-        <div>
-          <h1>RCM बचत कॅल्क्युलेटर — CRM</h1>
-          <div class="now" id="nowDate"></div>
-        </div>
-      </div>
+<div id="loginBox" class="container">
+  <h1>DS WORLD CRM</h1>
+  <input id="loginEmail" placeholder="Email">
+  <input id="loginPass" type="password" placeholder="Password">
+  <button id="btnLogin">Login</button>
 
-      <div style="display:flex;align-items:center;gap:12px">
-        <div class="visitor-badge" id="visitorCount">Visitors: —</div>
-        <button id="themeToggle">DARK</button>
-      </div>
-    </header>
-
-    <!-- login area handled earlier; this UI assumes user is logged in already via Step 4 -->
-
-    <div class="grid">
-      <!-- LEFT: Add Customer + List -->
-      <div class="left">
-
-        <div class="card">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <div>
-              <div class="small">Add Customer</div>
-              <h2 style="margin:6px 0 0;font-family:'Baloo 2';color:var(--primary)">नवीन ग्राहक</h2>
-            </div>
-            <div class="small" style="text-align:right">Designed by DS WORLD 🌍</div>
-          </div>
-
-          <div style="margin-top:12px">
-            <label>नाव</label>
-            <input id="c_name" placeholder="ग्राहकाचे नाव">
-
-            <div style="display:flex;gap:10px;margin-top:10px">
-              <div style="flex:1">
-                <label>मोबाईल</label>
-                <input id="c_mobile" placeholder="मोबाईल क्रमांक">
-              </div>
-              <div style="width:140px">
-                <label>स्टेटस</label>
-                <select id="c_status">
-                  <option value="Warm">Warm</option>
-                  <option value="Hot">Hot</option>
-                  <option value="Cold">Cold</option>
-                  <option value="Converted">Converted</option>
-                </select>
-              </div>
-            </div>
-
-            <label style="margin-top:10px">शहर</label>
-            <input id="c_city" placeholder="City / Taluka">
-
-            <label style="margin-top:10px">पत्ता</label>
-            <textarea id="c_addr" rows="2" placeholder="Address / Landmark"></textarea>
-
-            <label style="margin-top:10px">Next Follow-up</label>
-            <input id="c_next" type="date">
-
-            <label style="margin-top:10px">Notes</label>
-            <textarea id="c_notes" rows="2" placeholder="Short note or interest"></textarea>
-
-            <div style="display:flex;gap:8px;margin-top:12px">
-              <button class="btn primary" id="btnAddCust">+ Add Customer</button>
-              <button class="btn ghost" id="btnClearForm">Clear</button>
-              <div style="flex:1"></div>
-              <div class="export-row">
-                <button class="btn ghost" id="btnExport">Export CSV</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:12px">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <div>
-              <div class="small">Customers</div>
-              <h3 style="margin:6px 0 0;font-family:'Baloo 2';color:var(--primary)">Customer List</h3>
-            </div>
-            <div style="width:260px">
-              <div class="search-row">
-                <input id="searchInput" placeholder="Search by name or mobile">
-                <select id="sortSelect">
-                  <option value="new">Newest</option>
-                  <option value="old">Oldest</option>
-                  <option value="follow">Next Follow</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-list" id="customerList">
-            <!-- customers render here -->
-          </div>
-        </div>
-
-      </div>
-
-      <!-- RIGHT: Analytics Cards + Recent Followups -->
-      <div>
-        <div class="card">
-          <div class="small">Dashboard</div>
-          <h3 style="margin:6px 0 0;font-family:'Baloo 2';color:var(--primary)">Overview</h3>
-
-          <div style="margin-top:12px" class="cards">
-            <div class="big-card c1">
-              <div class="label">Total Customers</div>
-              <div class="val" id="statCustomers">0</div>
-            </div>
-            <div class="big-card c2">
-              <div class="label">Follow-ups Today</div>
-              <div class="val" id="statFollowToday">0</div>
-            </div>
-            <div class="big-card c3">
-              <div class="label">Converted</div>
-              <div class="val" id="statConverted">0</div>
-            </div>
-            <div class="big-card c4">
-              <div class="label">Pending Follow-ups</div>
-              <div class="val" id="statPending">0</div>
-            </div>
-          </div>
-
-          <div style="margin-top:12px">
-            <div class="small">Recent Follow-ups</div>
-            <div id="recentFollow" style="margin-top:8px"></div>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:12px">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <div>
-              <div class="small">Quick Actions</div>
-              <h4 style="margin:6px 0 0;color:var(--primary)">Tools</h4>
-            </div>
-          </div>
-
-          <div class="stats-row" style="margin-top:12px">
-            <div class="stat-small">
-              <div class="small">Add Demo</div>
-              <div style="font-weight:800;margin-top:6px" id="demoAdd">—</div>
-            </div>
-            <div class="stat-small">
-              <div class="small">Export</div>
-              <div style="font-weight:800;margin-top:6px"><button class="btn ghost" id="btnQuickExport">CSV</button></div>
-            </div>
-            <div class="stat-small">
-              <div class="small">Clear Sample</div>
-              <div style="font-weight:800;margin-top:6px"><button class="btn ghost" id="btnClearSample">Clear</button></div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Modal for customer details -->
-    <div class="overlay" id="overlay">
-      <div class="modal" id="modal">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <h3 id="m_name">Customer</h3>
-          <div><button class="btn ghost" id="closeModal">Close</button></div>
-        </div>
-
-        <div style="margin-top:10px">
-          <div class="small">Mobile</div>
-          <div id="m_mobile" style="font-weight:800"></div>
-
-          <div class="small" style="margin-top:8px">Address</div>
-          <div id="m_addr"></div>
-
-          <div class="small" style="margin-top:8px">Status</div>
-          <div id="m_status" style="font-weight:700"></div>
-
-          <div class="small" style="margin-top:8px">Next Follow</div>
-          <div id="m_next"></div>
-
-          <div style="margin-top:10px">
-            <div class="small">Notes</div>
-            <div id="m_notes"></div>
-          </div>
-
-          <div style="margin-top:12px">
-            <h4 style="margin:0 0 8px">Follow-up History</h4>
-            <div class="follow-list" id="followList"></div>
-          </div>
-
-          <div style="margin-top:12px">
-            <label>Add Follow-up (Note)</label>
-            <textarea id="f_note" rows="2" style="width:100%;padding:8px;border-radius:8px"></textarea>
-            <div style="display:flex;gap:8px;margin-top:8px">
-              <input id="f_date" type="date" style="padding:8px;border-radius:8px">
-              <button class="btn primary" id="btnAddFollow">Add Follow-up</button>
-              <button class="btn ghost" id="btnMarkDone">Mark Done</button>
-            </div>
-          </div>
-
-          <div class="actions" style="margin-top:12px">
-            <button class="btn primary" id="btnWhatsCust">Send WhatsApp</button>
-            <button class="btn ghost" id="btnCallCust">Call</button>
-            <button class="btn ghost" id="btnEditStatus">Edit Status</button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
+  <div class="switch">
+    New User? <span id="showRegister">Create Account</span>
   </div>
+</div>
 
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<div id="registerBox" class="container" style="display:none">
+  <h1>Create Account</h1>
+  <input id="regName" placeholder="Full Name">
+  <input id="regEmail" placeholder="Email">
+  <input id="regPass" type="password" placeholder="Password">
+  <button id="btnRegister">Create Account</button>
+
+  <div class="switch">
+    Already Registered? <span id="showLogin">Login</span>
+  </div>
+</div>
+
+<div id="dashboard" class="container">
+  <h1>Welcome to CRM</h1>
+  <p>Login Successful!</p>
+  <button onclick="logout()">Logout</button>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
 
 <script>
-/* ============ CONFIG ============ */
-/* Use your Firebase config (you gave earlier) */
+// Your Firebase Config
 const firebaseConfig = {
   apiKey: "AIzaSyCny9svhGUs3Ja5OrTHfH5Kqj05GW2S0RE",
   authDomain: "dsworldcrm.firebaseapp.com",
@@ -299,373 +119,76 @@ const firebaseConfig = {
   messagingSenderId: "449729131508",
   appId: "1:449729131508:web:61cdd1de17b151717c3fa1"
 };
+
+// INIT
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
-const db = firebase.firestore();
+const db   = firebase.firestore();
 
-/* ============ UI REFS ============ */
-const nowDate = document.getElementById('nowDate');
-setInterval(()=> nowDate.innerText = new Date().toLocaleString('mr-IN',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}),1000);
-
-const visitorCount = document.getElementById('visitorCount');
-
-const c_name = document.getElementById('c_name');
-const c_mobile = document.getElementById('c_mobile');
-const c_city = document.getElementById('c_city');
-const c_addr = document.getElementById('c_addr');
-const c_next = document.getElementById('c_next');
-const c_notes = document.getElementById('c_notes');
-const c_status = document.getElementById('c_status');
-
-const btnAddCust = document.getElementById('btnAddCust');
-const btnClearForm = document.getElementById('btnClearForm');
-const customerList = document.getElementById('customerList');
-const searchInput = document.getElementById('searchInput');
-const sortSelect = document.getElementById('sortSelect');
-
-const statCustomers = document.getElementById('statCustomers');
-const statFollowToday = document.getElementById('statFollowToday');
-const statConverted = document.getElementById('statConverted');
-const statPending = document.getElementById('statPending');
-const recentFollow = document.getElementById('recentFollow');
-
-const overlay = document.getElementById('overlay');
-const modal = document.getElementById('modal');
-const closeModal = document.getElementById('closeModal');
-const m_name = document.getElementById('m_name');
-const m_mobile = document.getElementById('m_mobile');
-const m_addr = document.getElementById('m_addr');
-const m_status = document.getElementById('m_status');
-const m_next = document.getElementById('m_next');
-const m_notes = document.getElementById('m_notes');
-const followList = document.getElementById('followList');
-
-const f_note = document.getElementById('f_note');
-const f_date = document.getElementById('f_date');
-const btnAddFollow = document.getElementById('btnAddFollow');
-const btnMarkDone = document.getElementById('btnMarkDone');
-const btnWhatsCust = document.getElementById('btnWhatsCust');
-const btnCallCust = document.getElementById('btnCallCust');
-const btnEditStatus = document.getElementById('btnEditStatus');
-
-const btnExport = document.getElementById('btnExport');
-const btnQuickExport = document.getElementById('btnQuickExport');
-const btnClearSample = document.getElementById('btnClearSample');
-const demoAdd = document.getElementById('demoAdd');
-
-/* ============ AUTH GUARD ============ */
-/* Show UI only if logged in. We assume Step 4 done. */
-auth.onAuthStateChanged(user=>{
-  if(user){
-    console.log('Logged in as', user.email);
-    // start realtime listeners
-    incrementVisitor(); // per-session visitor increment
-    subscribeCustomers();
-    subscribeStats();
-  } else {
-    // if not logged in redirect to login (assumes login page exists)
-    alert('Please login (Step 4). Redirecting to login.');
-    window.location.href = '/'; // adjust if login is index
-  }
-});
-
-/* ============ VISITOR COUNTER ============ */
-async function incrementVisitor(){
-  try{
-    const metaRef = db.collection('meta').doc('visits');
-    await db.runTransaction(async tx=>{
-      const doc = await tx.get(metaRef);
-      if(!doc.exists) tx.set(metaRef,{count:1});
-      else tx.update(metaRef,{count: (doc.data().count||0) + 1});
-    });
-    const snap = await metaRef.get();
-    visitorCount.innerText = 'Visitors: ' + (snap.data().count || 0);
-  }catch(e){
-    console.error('visitor err',e);
-    visitorCount.innerText = 'Visitors: —';
-  }
-}
-
-/* ============ ADD CUSTOMER ============ */
-btnAddCust.onclick = async ()=>{
-  const name = c_name.value.trim();
-  const mobile = c_mobile.value.trim();
-  if(!name || !mobile){ alert('Name and Mobile required'); return; }
-
-  const obj = {
-    name, mobile,
-    city: c_city.value || '',
-    address: c_addr.value || '',
-    nextFollow: c_next.value || '',
-    notes: c_notes.value || '',
-    status: c_status.value || 'Warm',
-    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-    createdBy: auth.currentUser ? auth.currentUser.uid : 'anon'
-  };
-
-  try{
-    const ref = await db.collection('customers').add(obj);
-    // also add initial follow-history entry
-    await db.collection('customers').doc(ref.id).collection('followups').add({
-      type:'created', text: 'Customer added', date: firebase.firestore.FieldValue.serverTimestamp(), by: auth.currentUser.email || ''
-    });
-    alert('Customer added');
-    clearForm();
-  }catch(e){ alert('Error: '+e.message); }
+// UI Switch
+showRegister.onclick = () => {
+  loginBox.style.display = "none";
+  registerBox.style.display = "block";
+};
+showLogin.onclick = () => {
+  registerBox.style.display = "none";
+  loginBox.style.display = "block";
 };
 
-/* clear form */
-btnClearForm.onclick = clearForm;
-function clearForm(){ c_name.value=''; c_mobile.value=''; c_city.value=''; c_addr.value=''; c_next.value=''; c_notes.value=''; c_status.value='Warm'; }
+// Registration
+btnRegister.onclick = async () => {
+  const name = regName.value.trim();
+  const email = regEmail.value.trim();
+  const pass = regPass.value.trim();
 
-/* ============ SUBSCRIBE CUSTOMERS (realtime) ============ */
-let customersCache = [];
-function subscribeCustomers(){
-  db.collection('customers').orderBy('createdAt','desc')
-    .onSnapshot(snap=>{
-      customersCache = snap.docs.map(d=>({ id:d.id, ...d.data(), createdAt: d.data().createdAt }));
-      renderCustomers();
-    }, err=> console.error('cust listen',err));
-}
-
-/* render list with search & sort */
-function renderCustomers(){
-  const q = (searchInput.value || '').toLowerCase();
-  let list = customersCache.slice();
-
-  // filter
-  if(q){
-    list = list.filter(c => (c.name||'').toLowerCase().includes(q) || (c.mobile||'').includes(q));
+  if(!name || !email || !pass){
+    alert("All fields required!");
+    return;
   }
 
-  // sort
-  const sort = sortSelect.value;
-  if(sort==='new') list.sort((a,b)=> (b.createdAt?.seconds||0) - (a.createdAt?.seconds||0));
-  else if(sort==='old') list.sort((a,b)=> (a.createdAt?.seconds||0) - (b.createdAt?.seconds||0));
-  else if(sort==='follow') list.sort((a,b)=>{
-    const A = a.nextFollow || '9999-12-31'; const B = b.nextFollow || '9999-12-31';
-    return A.localeCompare(B);
-  });
-
-  // render
-  customerList.innerHTML = '';
-  list.forEach(c=>{
-    const div = document.createElement('div');
-    div.className='cust-item';
-    div.innerHTML = `
-      <div>
-        <div style="font-weight:800">${escapeHtml(c.name)}</div>
-        <div class="meta">${escapeHtml(c.mobile)} • ${escapeHtml(c.city)} • <span style="font-weight:700">${c.status||''}</span></div>
-        <div class="meta small">Next: ${c.nextFollow || '—'}</div>
-      </div>
-      <div style="display:flex;gap:8px;align-items:center">
-        <button class="btn ghost" data-id="${c.id}" onclick="openCustomer('${c.id}')">Open</button>
-        <button class="btn" style="background:#f25a5a;color:#fff" onclick="deleteCustomer('${c.id}')">Delete</button>
-      </div>
-    `;
-    customerList.appendChild(div);
-  });
-}
-
-/* hook search & sort */
-searchInput.oninput = renderCustomers;
-sortSelect.onchange = renderCustomers;
-
-/* ============ CUSTOMER MODAL & FOLLOWS ============ */
-let currentCustomerId = null;
-
-async function openCustomer(id){
-  currentCustomerId = id;
-  // get customer doc
-  const d = await db.collection('customers').doc(id).get();
-  if(!d.exists){ alert('Not found'); return; }
-  const data = d.data();
-  m_name.innerText = data.name || '';
-  m_mobile.innerText = data.mobile || '';
-  m_addr.innerText = data.address || '';
-  m_status.innerText = data.status || '';
-  m_next.innerText = data.nextFollow || '';
-  m_notes.innerText = data.notes || '';
-  followList.innerHTML = '<div class="small">Loading...</div>';
-  overlay.style.display = 'flex';
-
-  // load followups subcollection
-  const snap = await db.collection('customers').doc(id).collection('followups').orderBy('date','desc').get();
-  followList.innerHTML = '';
-  if(snap.empty) followList.innerHTML = '<div class="small">No follow-ups yet</div>';
-  snap.forEach(s=>{
-    const it = s.data();
-    const div = document.createElement('div');
-    div.className='follow-item';
-    const dd = it.date && it.date.toDate ? it.date.toDate().toLocaleString('mr-IN') : '';
-    div.innerHTML = `<div style="font-weight:700">${escapeHtml(it.text)}</div><div class="small">${dd} • ${escapeHtml(it.by||'')}</div>`;
-    followList.appendChild(div);
-  });
-}
-
-/* close modal */
-closeModal.onclick = ()=> overlay.style.display='none';
-
-/* add follow-up */
-btnAddFollow.onclick = async ()=>{
-  const note = f_note.value.trim();
-  const fdate = f_date.value || '';
-  if(!note){ alert('Enter note'); return; }
   try{
-    await db.collection('customers').doc(currentCustomerId).collection('followups').add({
-      text: note, date: fdate ? new Date(fdate) : firebase.firestore.FieldValue.serverTimestamp(), by: auth.currentUser.email || ''
+    let userCred = await auth.createUserWithEmailAndPassword(email, pass);
+    let uid = userCred.user.uid;
+
+    await db.collection("users").doc(uid).set({
+      name: name,
+      email: email,
+      role: "agent",
+      createdAt: new Date()
     });
-    // update customer nextFollow
-    await db.collection('customers').doc(currentCustomerId).update({ nextFollow: fdate||'' });
-    f_note.value=''; f_date.value='';
-    openCustomer(currentCustomerId); // refresh
-  }catch(e){ alert('Err: '+e.message); }
-};
 
-/* mark done (clear nextFollow) */
-btnMarkDone.onclick = async ()=>{
-  try{
-    await db.collection('customers').doc(currentCustomerId).update({ nextFollow: '' });
-    await db.collection('customers').doc(currentCustomerId).collection('followups').add({
-      text:'Marked Done', date: firebase.firestore.FieldValue.serverTimestamp(), by: auth.currentUser.email||''
-    });
-    openCustomer(currentCustomerId);
-  }catch(e){ alert(e.message); }
-};
+    alert("Account Created!");
+    registerBox.style.display = "none";
+    dashboard.style.display = "block";
 
-/* WhatsApp send (customer details summary) */
-btnWhatsCust.onclick = async ()=>{
-  const d = await db.collection('customers').doc(currentCustomerId).get();
-  const data = d.data();
-  const msg = `*RCM - Customer Details*\n\nName: ${data.name}\nMobile: ${data.mobile}\nStatus: ${data.status}\nNext Follow: ${data.nextFollow || '—'}\nNotes: ${data.notes || '—'}\n\nRegards,\nDS WORLD`;
-  // open whatsapp web/mobile
-  window.open('https://wa.me/?text='+encodeURIComponent(msg));
-};
-
-/* Call customer */
-btnCallCust.onclick = ()=>{
-  const num = m_mobile.innerText.trim();
-  if(num) window.location.href = 'tel:'+num;
-};
-
-/* edit status */
-btnEditStatus.onclick = async ()=>{
-  const newStatus = prompt('Enter new status (Hot/Warm/Cold/Converted)', m_status.innerText||'Warm');
-  if(newStatus){
-    await db.collection('customers').doc(currentCustomerId).update({ status: newStatus });
-    openCustomer(currentCustomerId);
+  }catch(err){
+    alert(err.message);
   }
 };
 
-/* delete customer */
-async function deleteCustomer(id){
-  if(!confirm('Delete customer?')) return;
+// Login
+btnLogin.onclick = async () => {
+  let email = loginEmail.value.trim();
+  let pass  = loginPass.value.trim();
+
   try{
-    await db.collection('customers').doc(id).delete();
-    alert('Deleted');
-  }catch(e){ alert('Err: '+e.message); }
-}
+    await auth.signInWithEmailAndPassword(email, pass);
 
-/* ============ STATS SUBSCRIBE ============ */
-function subscribeStats(){
-  db.collection('customers').onSnapshot(snap=>{
-    const all = snap.docs.map(d=>({ id:d.id, ...d.data() }));
-    const total = all.length;
-    const today = new Date().toISOString().slice(0,10);
-    let followToday=0, converted=0, pending=0;
-    const recent = [];
+    loginBox.style.display = "none";
+    dashboard.style.display = "block";
 
-    all.forEach(c=>{
-      if(c.status==='Converted') converted++;
-      if(c.nextFollow && c.nextFollow.slice && c.nextFollow.slice(0,10)===today) followToday++;
-      if(c.nextFollow && c.nextFollow!=='') pending++;
-      recent.push({name:c.name, next:c.nextFollow||'', id:c.id});
-    });
-
-    statCustomers.innerText = total;
-    statFollowToday.innerText = followToday;
-    statConverted.innerText = converted;
-    statPending.innerText = pending;
-
-    // recent followups
-    recentFollow.innerHTML = '';
-    recent.slice(0,5).forEach(r=>{
-      const div = document.createElement('div');
-      div.style.padding='6px 0'; div.innerHTML = `<div style="font-weight:700">${escapeHtml(r.name)}</div><div class="small">Next: ${r.next||'—'}</div>`;
-      recentFollow.appendChild(div);
-    });
-  });
-}
-
-/* ============ EXPORT CSV ============ */
-btnExport.onclick = exportCSV;
-btnQuickExport.onclick = exportCSV;
-async function exportCSV(){
-  const snap = await db.collection('customers').orderBy('createdAt','desc').get();
-  const rows = snap.docs.map(d=>{
-    const x = d.data();
-    return {
-      id: d.id,
-      name: x.name||'',
-      mobile: x.mobile||'',
-      city: x.city||'',
-      status: x.status||'',
-      nextFollow: x.nextFollow||'',
-      notes: x.notes||''
-    };
-  });
-  const csv = toCSV(rows);
-  const a = document.createElement('a');
-  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
-  a.download = 'customers_export.csv';
-  a.click();
-}
-
-/* helper toCSV */
-function toCSV(arr){
-  if(!arr.length) return '';
-  const keys = Object.keys(arr[0]);
-  const lines = [keys.join(',')];
-  arr.forEach(r=>{
-    lines.push(keys.map(k => `"${String((r[k]||'')).replace(/"/g,'""')}"`).join(','));
-  });
-  return lines.join('\n');
-}
-
-/* demo add & clear sample */
-btnClearSample.onclick = async ()=>{
-  if(!confirm('Clear all customers? This will delete all docs.')) return;
-  const snap = await db.collection('customers').get();
-  const batch = db.batch();
-  snap.docs.forEach(d=> batch.delete(d.ref));
-  await batch.commit();
-  alert('All cleared');
-};
-btnQuickExport.onclick = exportCSV;
-btnClearSample.onclick = async ()=>{ if(confirm('Clear sample?')){ const s=await db.collection('customers').get(); const b=db.batch(); s.docs.forEach(d=>b.delete(d.ref)); await b.commit(); alert('Cleared'); } };
-document.getElementById('demoAdd').innerText='Ready';
-
-/* add a quick demo customer */
-demoAdd.onclick = async ()=>{
-  await db.collection('customers').add({
-    name:'Demo Name', mobile:'9000000000', city:'Pune', address:'Demo address', nextFollow:'',
-    notes:'Demo', status:'Warm', createdAt: firebase.firestore.FieldValue.serverTimestamp()
-  });
-  alert('Demo added');
+  }catch(err){
+    alert(err.message);
+  }
 };
 
-/* ============ UTILITIES ============ */
-function escapeHtml(s){ if(!s) return ''; return String(s).replace(/[&<>"']/g, m=> ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
-
-/* subscribe simple meta (visitor) update realtime */
-db.collection('meta').doc('visits').onSnapshot(d=>{
-  if(d.exists) visitorCount.innerText = 'Visitors: ' + (d.data().count||0);
-});
-
-/* small UX: open customer from global (exposed) */
-window.openCustomer = openCustomer;
-window.deleteCustomer = deleteCustomer;
-
+// Logout
+function logout(){
+  auth.signOut();
+  dashboard.style.display = "none";
+  loginBox.style.display = "block";
+}
 </script>
+
 </body>
 </html>
